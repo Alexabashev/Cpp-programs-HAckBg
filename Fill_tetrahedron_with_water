@@ -1,0 +1,21 @@
+#include<iostream>
+#include<conio.h>
+#include<math.h>
+#include <iomanip>
+//Tetrahedron filled with water;
+using namespace std;
+
+int fill_tetrahedron(int& num)// Implementation of The funcion;
+{
+	return (sqrt(2) * pow(num, 3)) / 12;// Calculating colume
+}
+
+int main()
+{
+	int num;
+	cout << "Enter tetrehedron side (Edge lenght) \n";
+	cin >> num;// Entering edge lenght;
+	cout <<"Tetrahedron filled with water:"<< setiosflags(ios::fixed) << setprecision(2) << ((double)(fill_tetrahedron(num)) / 1000) <<" Liters"<< endl;
+	_getch();
+	return 0;
+}
