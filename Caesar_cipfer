@@ -1,0 +1,71 @@
+#include <iostream>
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+using namespace std;
+
+int main()
+{
+    char txt[51];
+    int shift, len, i=0, j=0;
+
+
+    cout << "Enter the text that has to be encrypted:" << endl;
+    cin.getline(txt, 51);
+    len = strlen(txt);
+
+    while (j < len)
+    {
+        if(txt[j] == 32)
+        {
+            txt[j] = txt[j];
+        }
+
+        j++;
+    }
+
+    Shiftcheck:
+    cout << "\nEnter the amount of Caseser Shift in numbers(shouldn't be greater than 26): ";
+    cin >> shift;
+    if ((shift > 26) || (shift < 0))
+    {
+        cout << "\nWrong value:Type again." << endl;
+        goto Shiftcheck;
+    }
+
+    while (i < len)
+    {
+
+        txt[i] = toupper(txt[i]);
+        txt[i] = txt[i] + shift;
+
+        if (txt[i] - shift == 32)
+        {
+            txt[i] = txt[i] - shift;
+        }
+
+        else if(((txt[i] - shift > 31) && (txt[i] - shift < 65)|| ((txt[i] - shift > 90) && (txt[i] - shift < 97))|| ((txt[i] - shift > 122) && (txt[i] - shift < 128))))
+                {
+                    txt[i] = txt[i] - shift;
+                }
+
+        else if (txt[i] > 90)
+        {
+            if (txt[i] == 32 + shift)
+            {
+                txt[i] = txt[i] - shift;
+            }
+            else
+            {
+                txt[i] = (txt[i] - 26);
+            }
+        }
+        i++;
+    }
+    cout << "\nYour encrypted Text is: " << txt << endl;
+
+    _getch();
+
+    return 0;
+}
